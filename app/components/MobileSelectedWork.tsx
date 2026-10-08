@@ -31,6 +31,10 @@ export function MobileSelectedWork({ projects }: MobileSelectedWorkProps) {
   const [transitionDirection, setTransitionDirection] = useState<"down" | "up">("down");
   const [isTransitioning, setIsTransitioning] = useState(false);
 
+  // Subtle visual nudge on fresh entry into Project 01
+  const [showNudge, setShowNudge] = useState(false);
+  const hasNudgedSessionRef = useRef(false);
+
   // Authoritative refs for synchronous event guarding
   const isImmersiveRef = useRef(false);
   const activeIndexRef = useRef(0);
@@ -64,6 +68,10 @@ export function MobileSelectedWork({ projects }: MobileSelectedWorkProps) {
     // Restore body scroll completely
     document.body.style.overflow = "";
     document.documentElement.style.overflow = "";
+
+    // Reset nudge state so next fresh session can trigger once
+    hasNudgedSessionRef.current = false;
+    setShowNudge(false);
   }, []);
 
   // Sync state to ref
@@ -166,6 +174,10 @@ export function MobileSelectedWork({ projects }: MobileSelectedWorkProps) {
       setActiveIndex(target);
       activeIndexRef.current = target;
 
+      // Mark that this entry returned from detail page so nudge cue does not play
+      hasNudgedSessionRef.current = true;
+      setShowNudge(false);
+
       // On mobile viewports, smoothly enter immersive mode on that specific project
       if (window.innerWidth < 768) {
         const container = containerRef.current;
@@ -183,6 +195,25 @@ export function MobileSelectedWork({ projects }: MobileSelectedWorkProps) {
       }
     }
   }, [lockDocument]);
+
+  // Subtle cue: trigger once per fresh entry into Project 01
+  useEffect(() => {
+    // Only trigger if immersive mode is active, at Project 01, not currently transitioning,
+    // and this session has not yet performed the nudge
+    if (isImmersive && activeIndex === 0 && !hasNudgedSessionRef.current) {
+      hasNudgedSessionRef.current = true;
+
+      // Wait until Project 01 has completely settled into its normal resting state
+      const timer = setTimeout(() => {
+        // Double-check user is still at Project 01 and hasn't navigated away
+        if (activeIndexRef.current === 0 && !isTransitioningRef.current) {
+          setShowNudge(true);
+        }
+      }, 700);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isImmersive, activeIndex]);
 
   // Monitor normal page scroll when OUTSIDE to capture entry boundaries
   useEffect(() => {
@@ -357,11 +388,16 @@ export function MobileSelectedWork({ projects }: MobileSelectedWorkProps) {
                     pointerEvents: isActive && !isTransitioning ? "auto" : "none",
                   }}
                 >
-                  {/* Full-Screen Product Screenshot Canvas */}
+                  {/* Full-Screen Product Screenshot Canvas with subtle Project 01 nudge */}
                   <img
                     src={displayImage}
                     alt={project.name}
-                    className="absolute inset-0 w-full h-full object-cover object-top pointer-events-none select-none"
+                    onAnimationEnd={() => {
+                      if (index === 0) setShowNudge(false);
+                    }}
+                    className={`absolute inset-0 w-full h-full object-cover object-top pointer-events-none select-none ${
+                      index === 0 && showNudge ? "animate-banking-nudge" : ""
+                    }`}
                   />
 
                   {/* Compact Full-Width Semi-Transparent Bottom Band */}
