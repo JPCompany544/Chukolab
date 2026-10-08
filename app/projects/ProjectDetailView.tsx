@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Container } from "../components/ui";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { ProjectDetail } from "./projectData";
@@ -16,9 +17,16 @@ export function ProjectDetailView({ project }: ProjectDetailViewProps) {
           <div className="flex items-center justify-between h-20">
             <Link
               href="/#work"
-              className="group flex items-center gap-2.5 text-[#111111] focus:outline-none"
+              className="group flex items-center gap-3 text-[#111111] focus:outline-none"
             >
-              <span className="w-3.5 h-3.5 bg-[#435BFF] inline-block transition-transform duration-300 group-hover:scale-90" />
+              <Image
+                src="/chukolab-logomain.png"
+                alt="Chukolab Logo"
+                width={36}
+                height={36}
+                priority
+                className="w-8 h-8 sm:w-9 sm:h-9 object-contain transition-transform duration-300 group-hover:scale-95"
+              />
               <span className="font-semibold text-lg sm:text-xl tracking-tight text-[#111111] uppercase">
                 CHUKOLAB
               </span>
@@ -261,7 +269,13 @@ export function ProjectDetailView({ project }: ProjectDetailViewProps) {
         <Container size="wide">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 font-mono text-xs">
             <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 bg-[#435BFF] inline-block" />
+              <Image
+                src="/chukolab-logomain.png"
+                alt="Chukolab Logo"
+                width={18}
+                height={18}
+                className="w-4.5 h-4.5 object-contain"
+              />
               <span className="text-[#111111] uppercase font-semibold">CHUKOLAB</span>
               <span className="text-[#80868B] pl-2 border-l border-[#E8E8EA]">STUDIO</span>
             </div>

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Container } from "./ui";
 
 export function Footer() {
@@ -10,7 +11,13 @@ export function Footer() {
           {/* Brand Col */}
           <div className="max-w-xs space-y-4">
             <div className="flex items-center gap-2.5">
-              <span className="w-3 h-3 bg-[#435BFF] inline-block" />
+              <Image
+                src="/chukolab-logomain.png"
+                alt="Chukolab Logo"
+                width={22}
+                height={22}
+                className="w-5.5 h-5.5 object-contain"
+              />
               <span className="font-semibold text-lg tracking-tight text-[#111111] uppercase">
                 CHUKOLAB
               </span>

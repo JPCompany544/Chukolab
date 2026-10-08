@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { Container } from "./ui";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { useInSelectedWork } from "./useInSelectedWork";
@@ -17,13 +18,20 @@ export function Navbar() {
     >
       <Container size="wide">
         <div className="flex items-center justify-between h-20">
-          {/* Chukolab Wordmark */}
+          {/* Chukolab Logo */}
           <div className="flex items-center gap-3">
             <a
               href="#"
-              className="group flex items-center gap-2.5 text-[#111111] focus:outline-none"
+              className="group flex items-center gap-3 text-[#111111] focus:outline-none"
             >
-              <span className="w-3.5 h-3.5 bg-[#435BFF] inline-block transition-transform duration-300 group-hover:scale-90" />
+              <Image
+                src="/chukolab-logomain.png"
+                alt="Chukolab Logo"
+                width={36}
+                height={36}
+                priority
+                className="w-8 h-8 sm:w-9 sm:h-9 object-contain transition-transform duration-300 group-hover:scale-95"
+              />
               <span className="font-semibold text-lg sm:text-xl tracking-tight text-[#111111] uppercase">
                 CHUKOLAB
               </span>

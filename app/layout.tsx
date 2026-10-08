@@ -17,6 +17,15 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Chukolab — Product Studio",
   description: "Product studio building serious custom software, fintech infrastructure, digital platforms, and complex business operations.",
+  icons: {
+    icon: [
+      { url: "/chukolab-logomain.png", type: "image/png" },
+    ],
+    shortcut: ["/chukolab-logomain.png"],
+    apple: [
+      { url: "/chukolab-logomain.png", type: "image/png" },
+    ],
+  },
 };
 
 export default function RootLayout({
