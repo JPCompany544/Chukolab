@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Container } from "./ui";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { useInSelectedWork } from "./useInSelectedWork";
@@ -20,8 +21,8 @@ export function Navbar() {
         <div className="flex items-center justify-between h-20">
           {/* Chukolab Logo */}
           <div className="flex items-center gap-3">
-            <a
-              href="#"
+            <Link
+              href="/"
               className="group flex items-center gap-3 text-[#111111] focus:outline-none"
             >
               <Image
@@ -35,7 +36,7 @@ export function Navbar() {
               <span className="font-semibold text-lg sm:text-xl tracking-tight text-[#111111] uppercase">
                 CHUKOLAB
               </span>
-            </a>
+            </Link>
             <span className="hidden sm:inline-block font-mono text-[10px] text-[#5F6368] uppercase tracking-widest pl-2 border-l border-[#E8E8EA]">
               STUDIO
             </span>
@@ -43,29 +44,29 @@ export function Navbar() {
 
           {/* Desktop Navigation Links */}
           <nav className="hidden md:flex items-center gap-8">
-            <a
-              href="#work"
+            <Link
+              href="/#work"
               className="text-sm font-medium text-[#5F6368] hover:text-[#435BFF] transition-colors tracking-tight"
             >
               Work
-            </a>
-            <a
-              href="#about"
+            </Link>
+            <Link
+              href="/#about"
               className="text-sm font-medium text-[#5F6368] hover:text-[#435BFF] transition-colors tracking-tight"
             >
               About
-            </a>
+            </Link>
           </nav>
 
           {/* Primary CTA Placeholder */}
           <div className="hidden md:flex items-center gap-4">
-            <a
-              href="#contact"
+            <Link
+              href="/#contact"
               className="group inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider px-4 py-2.5 border border-[#435BFF] bg-[#435BFF] text-white hover:bg-[#364BDB] hover:border-[#364BDB] active:bg-[#2D3FB8] transition-all cursor-pointer"
             >
               <span>START A PROJECT</span>
               <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </a>
+            </Link>
           </div>
 
           {/* Mobile Menu Trigger */}
@@ -90,29 +91,29 @@ export function Navbar() {
       {mobileMenuOpen && (
         <div className="md:hidden border-b border-[#E8E8EA] bg-white px-6 py-8 animate-in slide-in-from-top-2 duration-200">
           <nav className="flex flex-col gap-5">
-            <a
-              href="#work"
+            <Link
+              href="/#work"
               onClick={() => setMobileMenuOpen(false)}
               className="text-lg font-medium text-[#111111] py-1 hover:text-[#435BFF] transition-colors"
             >
               Work
-            </a>
-            <a
-              href="#about"
+            </Link>
+            <Link
+              href="/#about"
               onClick={() => setMobileMenuOpen(false)}
               className="text-lg font-medium text-[#111111] py-1 hover:text-[#435BFF] transition-colors"
             >
               About
-            </a>
+            </Link>
             <div className="pt-4 border-t border-[#E8E8EA]">
-              <a
-                href="#contact"
+              <Link
+                href="/#contact"
                 onClick={() => setMobileMenuOpen(false)}
                 className="w-full inline-flex items-center justify-center gap-2 text-xs font-mono uppercase tracking-wider py-3 border border-[#435BFF] bg-[#435BFF] text-white hover:bg-[#364BDB]"
               >
                 <span>START A PROJECT</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
-              </a>
+              </Link>
             </div>
           </nav>
         </div>

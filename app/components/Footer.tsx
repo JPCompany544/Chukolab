@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Image from "next/image";
 import { Container } from "./ui";
 
@@ -36,14 +37,19 @@ export function Footer() {
               <span className="text-[#111111] uppercase tracking-wider block font-medium">NAVIGATION</span>
               <ul className="space-y-2">
                 <li>
-                  <a href="#work" className="hover:text-[#435BFF] transition-colors">
+                  <Link href="/#work" className="hover:text-[#435BFF] transition-colors">
                     Selected Work
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#about" className="hover:text-[#435BFF] transition-colors">
+                  <Link href="/#about" className="hover:text-[#435BFF] transition-colors">
                     About Studio
-                  </a>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/privacy-policy" className="hover:text-[#435BFF] transition-colors">
+                    Privacy Policy
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -60,12 +66,12 @@ export function Footer() {
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="#contact"
+                  <Link
+                    href="/#contact"
                     className="hover:text-[#435BFF] transition-colors"
                   >
                     Start a Project
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -104,8 +110,15 @@ export function Footer() {
 
         {/* Bottom row */}
         <div className="pt-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4 font-mono text-xs text-[#5F6368]">
-          <div>
-            © {currentYear} Chukolab Ltd. All rights reserved.
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+            <span>© {currentYear} Chukolab Ltd. All rights reserved.</span>
+            <span className="text-[#D8D8DC]" aria-hidden="true">•</span>
+            <Link
+              href="/privacy-policy"
+              className="hover:text-[#435BFF] transition-colors"
+            >
+              Privacy Policy
+            </Link>
           </div>
           <div>
             DESIGNED & ENGINEERED WITH DISCIPLINE.
